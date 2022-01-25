@@ -10,15 +10,9 @@ const UserSchema = new db.Schema({
 })
 User= model("User",UserSchema)
 
-const PersonalPageSchema = new db.Schema({
-    _id: {type: Schema.Types.ObjectId},
-    user_id: {type: Schema.Types.ObjectId, ref:'UserSchema'}
-})
-PersonalPage=model("PersonalPage", PersonalPageSchema)
-
 const PersonalCollectionSchema = new db.Schema({
     _id: {type: Schema.Types.ObjectId},
-    personal_collections_id: {type: Schema.Types.ObjectId, ref: "PersonalPage"},
+    user_id: {type: Schema.Types.ObjectId, ref: "User"},
     collection_id: {type: [Schema.Types.ObjectId], ref: "Collection"}
 })
 PersonalCollections=model("PersonalCollections",PersonalCollectionSchema)
@@ -77,7 +71,6 @@ Comments=model("Comments",CommentSchema)
 
 module.exports ={
     User,
-    PersonalPage,
     PersonalCollections,
     Collection,
     Theme,

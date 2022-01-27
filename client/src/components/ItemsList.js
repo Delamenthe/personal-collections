@@ -4,7 +4,7 @@ import {Context} from "../index";
 import {Row} from "react-bootstrap";
 import CollectionItem from "./CollectionItem";
 
-const CollectionList = observer(() => {
+const ItemsList = observer(() => {
     const {collection} = useContext(Context)
     return (
         <Row className="d-flex justify-content-start">
@@ -15,4 +15,4 @@ const CollectionList = observer(() => {
     );
 });
 
-export default CollectionList;
+export default ItemsList;

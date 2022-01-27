@@ -5,7 +5,6 @@ import {COLLECTION_ROUTE} from "../utils/consts";
 
 const CollectionItem = ({collection}) => {
     const navigate = useNavigate();
-
     return (
         <Col md={3} className={"mt-3"} onClick={()=>navigate(COLLECTION_ROUTE+'/'+collection.id)}>
             <Card style={{width: 150, cursor: "pointer"}} border={"light"}>

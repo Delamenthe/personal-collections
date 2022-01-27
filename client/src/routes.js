@@ -10,6 +10,7 @@ import PersonalCollections from "./pages/PersonalCollections";
 import Collections from "./pages/Collections";
 import Auth from "./pages/Auth";
 import Item from "./pages/Item";
+import Collection from "./pages/Collection";
 
 export const authRoutes = [
     {
@@ -26,6 +27,10 @@ export const publicRoutes =[
     {
         path: COLLECTIONS_ROUTE,
         Component: Collections
+    },
+    {
+        path: COLLECTIONS_ROUTE+'/:id',
+        Component: Collection
     },
     {
         path: LOGIN_ROUTE,

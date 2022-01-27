@@ -1,0 +1,23 @@
+const express = require('express')
+const router = express.Router()
+const collectionRouter = require('./collectionRouter')
+const commentRouter = require('./commentRouter')
+const fieldRouter = require('./fieldRouter')
+const itemRouter = require('./itemRouter')
+const personalCollectionRouter = require('./personalCollectionsRouter')
+const tagRouter = require('./tagRouter')
+const themeRouter = require('./themeRouter')
+const typeRouter = require('./typeRouter')
+const userRouter = require('./userRouter')
+
+router.use('/collection', collectionRouter)
+router.use('/comment', commentRouter)
+router.use('/field', fieldRouter)
+router.use('/item', itemRouter)
+router.use('/personalCollections', personalCollectionRouter)
+router.use('/tag', tagRouter)
+router.use('/theme', themeRouter)
+router.use('/type', typeRouter)
+router.use('/user', userRouter)
+
+module.exports = router

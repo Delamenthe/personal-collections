@@ -1,11 +1,11 @@
 require('dotenv').config()
 const express = require('express')
-const db = require('../server/db')
-const models = require('./models/models')
+const db = require('../db')
+const models = require('../models/models')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
-const router = require('./routes/index')
-const errorHandler = require('./middleware/ErrorHandlingMiddleware')
+const router = require('../routes')
+const errorHandler = require('../middleware/ErrorHandlingMiddleware')
 const path = require('path')
 const {config} = require("dotenv");
 

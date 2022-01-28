@@ -1,7 +1,8 @@
 import Admin from "./pages/Admin";
 import {
-    ADMIN_ROUTE, COLLECTION_ROUTE,
-    COLLECTIONS_ROUTE, ITEM_ROUTE,
+    ADMIN_ROUTE,
+    COLLECTIONS_ROUTE,
+    ITEM_ROUTE,
     LOGIN_ROUTE,
     PERSONAL_COLLECTIONS_ROUTE,
     REGISTRATION_ROUTE
@@ -29,7 +30,7 @@ export const publicRoutes =[
         Component: Collections
     },
     {
-        path: COLLECTION_ROUTE+'/:id',
+        path: COLLECTIONS_ROUTE+'/:id',
         Component: Collection
     },
     {

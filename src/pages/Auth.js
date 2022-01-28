@@ -12,17 +12,18 @@ const Auth = observer(() => {
     const location = useLocation()
     const navigate = useNavigate();
     const isLogin = location.pathname === LOGIN_ROUTE
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const click = async () =>{
         try{
-            let data;
+
             if (isLogin){
-                data = await login(email, password);
+                const data = await login(email, password);
             }
             else {
-                data = await registration(email, password);
+                const data = await registration(name, email, password);
             }
             user.setUser(user)
             user.setIsAuth(true)
@@ -40,6 +41,14 @@ const Auth = observer(() => {
             <Card style={{width: 600}} className="p-5">
                 <h2 className="m-auto">{isLogin ? "Authorisation" : "Registration"}</h2>
                 <Form className="d-flex flex-column">
+                    {isLogin ?console.log("login"):
+                        <Form.Control
+                            className="mt-3"
+                            placeholder="Enter your name..."
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                        />
+                    }
                     <Form.Control
                         className="mt-3"
                         placeholder="Enter your email..."
@@ -71,7 +80,6 @@ const Auth = observer(() => {
                     </Row>
                 </Form>
             </Card>
-
         </Container>
     );
 });

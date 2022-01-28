@@ -8,7 +8,7 @@ const ItemsList = observer(() => {
     const {collection} = useContext(Context)
     return (
         <Row className="d-flex justify-content-start">
-            {collection.collections.map(collection =>
+            {collection.collection.map(collection =>
                 <CollectionItem key={collection.id} collection={collection}/>
             )}
         </Row>

@@ -1,22 +1,25 @@
-import React from 'react';
-import {Col, Container, Row} from "react-bootstrap";
-import ThemeBar from "../components/ThemeBar";
+import React, {useContext, useEffect} from 'react';
+import {Container, Row} from "react-bootstrap";
 import CollectionList from "../components/CollectionList";
+import {fetchCollections} from "../http/CollectionAPI";
+import {Context} from "../index";
+import {observer} from "mobx-react-lite";
+
+const Collections = observer(() => {
+    const {collection} = useContext(Context)
+
+    useEffect(()=>{
+        fetchCollections().then(data=>collection.setCollections(data))
+    },[])
 
 
-const Collections = () => {
     return (
-        <Container>
+        <Container className="mt-2">
             <Row>
-                <Col md={3}>
-                    <ThemeBar/>
-                </Col>
-                <Col md={9}>
                     <CollectionList/>
-                </Col>
             </Row>
         </Container>
     );
-};
+});
 
 export default Collections;

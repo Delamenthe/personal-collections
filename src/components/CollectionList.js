@@ -7,7 +7,7 @@ import CollectionItem from "./CollectionItem";
 const CollectionList = observer(() => {
     const {collection} = useContext(Context)
     return (
-        <Row className="d-flex justify-content-start">
+        <Row className="d-flex">
             {collection.collections.map(collection =>
                 <CollectionItem key={collection.id} collection={collection}/>
             )}

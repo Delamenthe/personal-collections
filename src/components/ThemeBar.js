@@ -16,7 +16,6 @@ const ThemeBar = observer(() => {
                 >
                     {theme.name}
                 </ListGroup.Item>
-
             )}
         </ListGroup>
     );

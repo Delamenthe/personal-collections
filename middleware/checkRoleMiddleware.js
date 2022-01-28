@@ -10,7 +10,7 @@ module.exports = function(role) {
             if (!token) {
                 res.status(401).json({massage: "Not authorized"})
             }
-            const decoded = jwt.verify(token, process.env.SECRET_KEY)
+            const decoded = jwt.verify(token, process.env.SECRET_KEY,[],{})
             if(decoded.role !== role){
                 return res.status(403).json({massage: "No access"})
             }

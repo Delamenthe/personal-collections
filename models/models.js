@@ -28,7 +28,7 @@ const ItemSchema = new db.Schema({
     tags: {type: [Schema.Types.ObjectId], ref: "Tag"},
     comments: {type: [String]},
     likes: {type: Number, min: 0},
-    img: { data: Buffer, contentType: String},
+    img: { type: String},
     creation_date: Date
 })
 const Item=model("Item",ItemSchema)
@@ -38,8 +38,8 @@ const CollectionSchema = new db.Schema({
     name: {type: String, required: true},
     theme_id: {type: Schema.Types.ObjectId, ref: "Theme"},
     description: {type: String, required: true, maxLength: 255},
-    img: { data: Buffer, contentType: String},
-    items: {type: ItemSchema},
+    img: { type: String},
+    // items: {type: ItemSchema},
     author_id: {type: Schema.Types.ObjectId, ref: "User"}
 })
 const Collection=model("Collection",CollectionSchema)

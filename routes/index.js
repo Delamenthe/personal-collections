@@ -7,10 +7,10 @@ const tagRouter = require('./tagRouter')
 const themeRouter = require('./themeRouter')
 const userRouter = require('./userRouter')
 
-router.use('/collections', collectionRouter)
+router.use('/collection', collectionRouter)
 router.use('/items', itemRouter)
 router.use('/tags', tagRouter)
 router.use('/themes', themeRouter)
-router.use('/users', userRouter)
+router.use('/user', userRouter)
 
 module.exports = router

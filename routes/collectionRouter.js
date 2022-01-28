@@ -5,6 +5,6 @@ const collectionController = require('../controllers/collectionController')
 router.post('/',collectionController.create)
 router.get('/', collectionController.getAll)
 router.get('/:id', collectionController.getOne)
-router.delete('/', collectionController.del)
+router.put('/:id', collectionController.del)
 
 module.exports = router

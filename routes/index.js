@@ -8,9 +8,9 @@ const themeRouter = require('./themeRouter')
 const userRouter = require('./userRouter')
 
 router.use('/collection', collectionRouter)
-router.use('/items', itemRouter)
-router.use('/tags', tagRouter)
-router.use('/themes', themeRouter)
+router.use('/item', itemRouter)
+router.use('/tag', tagRouter)
+router.use('/theme', themeRouter)
 router.use('/user', userRouter)
 
 module.exports = router

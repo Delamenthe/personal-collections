@@ -11,7 +11,6 @@ class CollectionController{
             const {img}=req.files
             let filename = uuid.v4()+".jpg"
             await img.mv(path.resolve(__dirname, '..', 'static', filename))
-
             cloudinary.config({
                 cloud_name: 'delamenthe',
                 api_key: '276829232929379',

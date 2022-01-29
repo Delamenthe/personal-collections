@@ -19,13 +19,14 @@ const Auth = observer(() => {
     const click = async () =>{
         try{
 
+            let data
             if (isLogin){
-                const data = await login(email, password);
+                data = await login(email, password);
             }
             else {
-                const data = await registration(name, email, password);
+                data = await registration(name, email, password);
             }
-            user.setUser(user)
+            user.setUser(data)
             user.setIsAuth(true)
             navigate(COLLECTIONS_ROUTE)
         }catch (e) {

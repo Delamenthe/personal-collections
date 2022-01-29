@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, Container, Row} from "react-bootstrap";
 import CollectionList from "../components/CollectionList";
-import {fetchCollections} from "../http/CollectionAPI";
+import {fetchCollections, fetchThemes} from "../http/CollectionAPI";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import CreateCollection from "../components/CreateCollection";
@@ -11,6 +11,7 @@ const Collections = observer(() => {
     const {collection} = useContext(Context)
 
     useEffect(()=>{
+        fetchThemes().then(data=>collection.setThemes(data))
         fetchCollections().then(data=>collection.setCollections(data))
     },[])
 

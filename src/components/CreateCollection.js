@@ -1,8 +1,11 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import {observer} from "mobx-react-lite";
-import {createCollection} from "../http/CollectionAPI";
-import {Button, Form, Modal} from "react-bootstrap";
+import {createCollection, fetchThemes} from "../http/CollectionAPI";
+import {Button, Dropdown, Form, Modal} from "react-bootstrap";
 import { useDropzone } from 'react-dropzone';
+import {Context} from "../index";
+import collection from "../pages/Collection";
+import {toJS} from "mobx";
 
 
 const baseStyle = {
@@ -32,19 +35,23 @@ const rejectStyle = {
 };
 
 const CreateCollection =  observer(({show,onHide}) => {
+    const {user} = useContext(Context)
+    const {collection}=useContext(Context)
 
     const [name, setName] = useState('')
-    const [theme,setTheme] = useState('')
     const [description, setDescription] = useState('')
     const [file, setFile] = useState('')
-    const [author,setAuthor] = useState('')
+
+    useEffect(() => {
+        fetchThemes().then(data => collection.setThemes(data))
+    }, [])
 
     const addCollection = async () => {
         const formData = new FormData()
         formData.append('name',name)
-        formData.append('theme_id',theme)
+        formData.append('theme_id', toJS(collection.selectedTheme)._id)
         formData.append('description',description)
-        formData.append('author_id',author)
+        formData.append('author_id', user.user.id)
         formData.append("img", file)
 
         const data = await createCollection(formData).then(data => onHide())
@@ -95,23 +102,24 @@ const CreateCollection =  observer(({show,onHide}) => {
                     className="mt-3"
                     placeholder="Enter collection name"
                 />
-                <Form.Control
-                    value={theme}
-                    onChange={e=>setTheme(e.target.value)}
-                    className="mt-3"
-                    placeholder="Enter theme ID"
-                />
+                <Dropdown className="mt-2 mb-2">
+                    <Dropdown.Toggle>{collection.selectedTheme.name || "Choose theme"}</Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        {collection.themes.map(theme =>
+                            <Dropdown.Item
+                                onClick={() => collection.setSelectedTheme(theme)}
+                                key={theme.id}
+                            >
+                                {theme.name}
+                            </Dropdown.Item>
+                        )}
+                    </Dropdown.Menu>
+                </Dropdown>
                 <Form.Control
                     value={description}
                     onChange={e=>setDescription(e.target.value)}
                     className="mt-3"
                     placeholder="Enter description"
-                />
-                <Form.Control
-                value={author}
-                onChange={e=>setAuthor(e.target.value)}
-                className="mt-3"
-                placeholder="Enter author ID"
                 />
                 <div className="mt-3" {...getRootProps({style})}>
                     <input {...getInputProps()} />

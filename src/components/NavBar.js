@@ -22,6 +22,10 @@ const NavBar = observer( () => {
                     <Nav className="ml-auto" style={{color: 'white'}}>
                         <Button
                             variant={"outline-light"}
+                            onClick={e=>console.log(user.user.id)}
+                        >ehryr</Button>
+                        <Button
+                            variant={"outline-light"}
                             onClick={()=>navigate(ADMIN_ROUTE)}
                         >Admin Panel</Button>
                         <Button

@@ -7,8 +7,8 @@ const CollectionItem = ({collection}) => {
     const navigate = useNavigate();
     return (
         <Col md={3} className={"mt-3"} onClick={()=>navigate(COLLECTIONS_ROUTE+'/'+collection.id)}>
-            <Card style={{width: 150, cursor: "pointer"}} border={"light"}>
-                <Image width={150} height={150} src={''+process.env.REACT_APP_API_URL+ collection.img}/>
+            <Card style={{width: 300, cursor: "pointer"}} border={"light"}>
+                <Image width={300} height={300} src={''+process.env.REACT_APP_API_URL+ collection.img}/>
                 <h4>{collection.name}</h4>
                 <div>{collection.description}</div>
             </Card>

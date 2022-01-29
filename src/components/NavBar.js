@@ -23,7 +23,7 @@ const NavBar = observer( () => {
                         <Button
                             variant={"outline-light"}
                             onClick={e=>console.log(user.user.id)}
-                        >ehryr</Button>
+                        >{user.user.name}</Button>
                         <Button
                             variant={"outline-light"}
                             onClick={()=>navigate(ADMIN_ROUTE)}

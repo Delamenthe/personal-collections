@@ -4,7 +4,6 @@ import {createCollection, fetchThemes} from "../http/CollectionAPI";
 import {Button, Dropdown, Form, Modal} from "react-bootstrap";
 import { useDropzone } from 'react-dropzone';
 import {Context} from "../index";
-import collection from "../pages/Collection";
 import {toJS} from "mobx";
 
 
@@ -96,13 +95,7 @@ const CreateCollection =  observer(({show,onHide}) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form.Control
-                    value={name}
-                    onChange={e=>setName(e.target.value)}
-                    className="mt-3"
-                    placeholder="Enter collection name"
-                />
-                <Dropdown className="mt-2 mb-2">
+                <Dropdown className="mt-2 mb-2" >
                     <Dropdown.Toggle>{collection.selectedTheme.name || "Choose theme"}</Dropdown.Toggle>
                     <Dropdown.Menu>
                         {collection.themes.map(theme =>
@@ -115,6 +108,12 @@ const CreateCollection =  observer(({show,onHide}) => {
                         )}
                     </Dropdown.Menu>
                 </Dropdown>
+                <Form.Control
+                    value={name}
+                    onChange={e=>setName(e.target.value)}
+                    className="mt-3"
+                    placeholder="Enter collection name"
+                />
                 <Form.Control
                     value={description}
                     onChange={e=>setDescription(e.target.value)}

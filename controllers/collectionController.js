@@ -2,17 +2,28 @@ const {Collection} = require('../models/models')
 const ApiError = require('../error/ApiError')
 const uuid = require("uuid");
 const path = require("path");
+const cloudinary = require("cloudinary");
 
 class CollectionController{
     async create(req,res,next){
         try{
             const {name, theme_id, description, author_id} = req.body
-            const {img} = req.files
-
+            const {img}=req.files
             let filename = uuid.v4()+".jpg"
             await img.mv(path.resolve(__dirname, '..', 'static', filename))
 
-            const collection = await Collection.create({name, theme_id, description, img: filename, author_id,items: []})
+            cloudinary.config({
+                cloud_name: 'delamenthe',
+                api_key: '276829232929379',
+                api_secret: 'F3KeIDWJl9cuFQ0szcy8DNnmtsA'
+            });
+            await cloudinary.v2.uploader.upload(path.resolve(__dirname, '..', 'static', filename),
+                {public_id: filename},
+                function (error, result) {
+                    console.log(result);
+                });
+
+            const collection = await Collection.create({name, theme_id, description, img: filename, author_id, items: []})
             return res.json(collection)
         }catch (e) {
             next(ApiError.badRequest(e.message))

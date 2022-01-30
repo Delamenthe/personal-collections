@@ -6,7 +6,7 @@ import {observer} from "mobx-react-lite";
 import {Context} from "./index";
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
-import jwt_decode from "jwt-decode";
+
 import { darkTheme, lightTheme, GlobalStyles } from "./theme";
 import {ThemeProvider} from "styled-components";
 
@@ -20,10 +20,9 @@ const App = observer(() => {
     };
 
     useEffect(()=>{
-        const current_user = jwt_decode(localStorage.getItem('token'))
+
         check().then(() =>{
-                user.setUser(current_user)
-                console.log(current_user)
+                user.setUser({})
                 user.setIsAuth(true)
             }).finally(() => setLoading(false))
     }, [])
@@ -34,7 +33,7 @@ const App = observer(() => {
   return (
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
           <GlobalStyles />
-              <button onClick={themeToggler}>Switch Theme</button>
+              <button onClick={switchTheme}>Switch Theme</button>
       <BrowserRouter>
           <NavBar />
           <AppRouter />

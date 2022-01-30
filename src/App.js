@@ -4,7 +4,7 @@ import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
 import {observer} from "mobx-react-lite";
 import {Context} from "./index";
-import {check} from "./http/userAPI";
+import {check, fetchUser} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
 
 import { darkTheme, lightTheme, GlobalStyles } from "./theme";
@@ -22,7 +22,8 @@ const App = observer(() => {
 
     useEffect(()=>{
         check().then(() =>{
-                user.setIsAuth(true)
+                user.setIsAuth(true);
+                user.setUser(fetchUser())
             }).finally(() => setLoading(false))
     }, [])
     

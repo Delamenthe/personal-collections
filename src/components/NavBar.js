@@ -21,8 +21,8 @@ const NavBar = observer( () => {
                 {user.isAuth ?
                     <Nav className="ml-3">
                         <Button
-                            variant={"outline-light"}
-                            onClick={e=>console.log(user.user.id)}
+                                variant={"outline-light"}
+                                onClick={e => console.log(user.user.id)}
                         >{user.user.name}</Button>
                         <Button
                             variant={"outline-light"}

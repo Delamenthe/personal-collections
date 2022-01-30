@@ -34,7 +34,7 @@ const App = observer(() => {
   return (
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
           <GlobalStyles />
-              <button onClick={switchTheme}>Switch Theme</button>
+              <button onClick={themeToggler}>Switch Theme</button>
       <BrowserRouter>
           <NavBar />
           <AppRouter />

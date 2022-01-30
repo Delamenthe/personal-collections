@@ -22,13 +22,13 @@ const TagSchema = new db.Schema({
 })
 const Tag=model("Tag",TagSchema)
 
-
 const ItemSchema = new db.Schema({
     name: {type: String, required: true, trim:true},
     tags: {type: [Schema.Types.ObjectId], ref: "Tag"},
     comments: {type: [String]},
     likes: {type: Number, min: 0},
     img: { type: String},
+    collection_id: {type: Schema.Types.ObjectId, ref: "Collection"},
     creation_date: Date
 })
 const Item=model("Item",ItemSchema)
@@ -39,7 +39,6 @@ const CollectionSchema = new db.Schema({
     theme_id: {type: Schema.Types.ObjectId, ref: "Theme"},
     description: {type: String, required: true, maxLength: 255},
     img: { type: String},
-    // items: {type: ItemSchema},
     author_id: {type: Schema.Types.ObjectId, ref: "User"}
 })
 const Collection=model("Collection",CollectionSchema)

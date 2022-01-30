@@ -22,12 +22,11 @@ class CollectionController{
                     console.log(result);
                 });
 
-            const collection = await Collection.create({name, theme_id, description, img: filename, author_id, items: []})
+            const collection = await Collection.create({name, theme_id, description, img: filename, author_id})
             return res.json(collection)
         }catch (e) {
             next(ApiError.badRequest(e.message))
         }
-
 
     }
     async getAll(req,res){
@@ -37,10 +36,9 @@ class CollectionController{
             collections = await Collection.find()
         return res.json(collections)
     }
-
     async getOne(req,res){
         const {id} = req.params
-        const collection = await Collection.find({id})
+        const collection = await Collection.findOne({_id: id})
         return res.json(collection)
     }
     async del(req,res){

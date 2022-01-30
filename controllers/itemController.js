@@ -6,13 +6,13 @@ const path = require('path')
 class ItemController{
     async create(req,res, next){
         try{
-            const{name, tags, comments, likes} = req.body
+            const{name, tags, collection_id} = req.body
             const {img} = req.files
 
             let filename = uuid.v4()+".jpg"
             await img.mv(path.resolve(__dirname, '..', 'static', filename))
 
-            const item = await Item.create({name,tags, comments, likes, img: filename})
+            const item = await Item.create({name, tags, comments: [], likes: 0, img: filename, creation_date: Date.now(), collection_id})
             return res.json(item)
         }catch(e){
             next(ApiError.badRequest(e.message))

@@ -36,7 +36,6 @@ const rejectStyle = {
 const CreateItem =  observer(({show,onHide,id}) => {
 
     const {item}=useContext(Context)
-    const [collection, setCollection] = useState({info: []})
     const [name, setName] = useState('')
     const [file, setFile] = useState('')
 

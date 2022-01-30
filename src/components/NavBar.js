@@ -1,9 +1,10 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Context} from "../index";
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
 import {ADMIN_ROUTE, COLLECTIONS_ROUTE, LOGIN_ROUTE} from "../utils/consts";
 import {observer} from "mobx-react-lite";
+import {check, fetchUser} from "../http/userAPI";
 
 const NavBar = observer( () => {
     const {user} = useContext(Context)
@@ -13,6 +14,12 @@ const NavBar = observer( () => {
         user.setUser({})
         user.setIsAuth(false)
     }
+
+    useEffect(()=>{
+        check().then(() =>{
+            fetchUser().then(data=>user.setUser(data))
+        }).finally()
+    }, [])
 
     return (
         <Navbar bg="dark" variant="dark">

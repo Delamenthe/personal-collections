@@ -15,14 +15,13 @@ const App = observer(() => {
     const [loading, setLoading] = useState(true)
     const [theme, setTheme] = useState('light');
 
+
     const switchTheme = () => {
         theme === "light" ? setTheme("dark") : setTheme("light");
     };
 
     useEffect(()=>{
-
         check().then(() =>{
-                user.setUser({})
                 user.setIsAuth(true)
             }).finally(() => setLoading(false))
     }, [])

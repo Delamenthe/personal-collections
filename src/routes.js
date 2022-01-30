@@ -30,7 +30,7 @@ export const publicRoutes =[
         Component: Collections
     },
     {
-        path: COLLECTIONS_ROUTE+'/:id',
+        path: COLLECTIONS_ROUTE + '/:id',
         Component: Collection
     },
     {

@@ -7,11 +7,17 @@ import {Context} from "./index";
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
 import jwt_decode from "jwt-decode";
-
+import { darkTheme, lightTheme, GlobalStyles } from "./theme";
+import {ThemeProvider} from "styled-components";
 
 const App = observer(() => {
     const {user} = useContext(Context)
     const [loading, setLoading] = useState(true)
+    const [theme, setTheme] = useState('light');
+
+    const switchTheme = () => {
+        theme === "light" ? setTheme("dark") : setTheme("light");
+    };
 
     useEffect(()=>{
         const current_user = jwt_decode(localStorage.getItem('token'))
@@ -26,10 +32,14 @@ const App = observer(() => {
         return <Spinner animation={"grow"}/>
     }
   return (
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+          <GlobalStyles />
+              <button onClick={switchTheme}>Switch Theme</button>
       <BrowserRouter>
           <NavBar />
           <AppRouter />
       </BrowserRouter>
+      </ThemeProvider>
   );
 });
 

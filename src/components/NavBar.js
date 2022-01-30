@@ -19,7 +19,7 @@ const NavBar = observer( () => {
             <Container>
                 <NavLink style={{color: 'white'}} to={COLLECTIONS_ROUTE}>Collections</NavLink>
                 {user.isAuth ?
-                    <Nav className="ml-auto" style={{color: 'white'}}>
+                    <Nav className="ml-3">
                         <Button
                             variant={"outline-light"}
                             onClick={e=>console.log(user.user.id)}

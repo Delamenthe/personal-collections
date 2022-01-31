@@ -56,7 +56,8 @@ class UserController{
 
     async delete(req,res){
         const {id} = req.query
-        const user = await User.findOneAndDelete({id: id})
+        console.log(id)
+        const user = await User.findOneAndDelete({_id: id})
         return res.json(user)
 
     }

@@ -1,7 +1,7 @@
 import Admin from "./pages/Admin";
 import {
     ADMIN_ROUTE,
-    COLLECTIONS_ROUTE,
+    COLLECTIONS_ROUTE, CREATE_COLLECTION_ROUTE,
     ITEM_ROUTE,
     LOGIN_ROUTE,
     PERSONAL_COLLECTIONS_ROUTE,
@@ -12,6 +12,7 @@ import Collections from "./pages/Collections";
 import Auth from "./pages/Auth";
 import Item from "./pages/Item";
 import Collection from "./pages/Collection";
+import CreateCollection from "./components/CreateCollection";
 
 export const authRoutes = [
     {

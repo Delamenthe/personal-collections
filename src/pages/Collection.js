@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Button, Card, Container, Image, ListGroup, ListGroupItem, Table} from "react-bootstrap";
+import {Button, Card, Container, Table} from "react-bootstrap";
 import {useParams} from "react-router-dom";
 import {fetchOneCollection} from "../http/CollectionAPI";
 import CreateItem from "../components/CreateItem";

@@ -6,7 +6,6 @@ import { useDropzone } from 'react-dropzone';
 import {Context} from "../index";
 import {toJS} from "mobx";
 
-
 const baseStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -32,6 +31,7 @@ const acceptStyle = {
 const rejectStyle = {
     borderColor: '#ff1744'
 };
+
 
 const CreateCollection =  observer(({show,onHide}) => {
     const {user} = useContext(Context)

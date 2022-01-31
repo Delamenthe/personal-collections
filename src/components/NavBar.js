@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import {Context} from "../index";
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
-import {ADMIN_ROUTE, COLLECTIONS_ROUTE, LOGIN_ROUTE} from "../utils/consts";
+import {ADMIN_ROUTE, COLLECTIONS_ROUTE, LOGIN_ROUTE, PERSONAL_COLLECTIONS_ROUTE} from "../utils/consts";
 import {observer} from "mobx-react-lite";
 import {check, fetchUser} from "../http/userAPI";
 
@@ -30,7 +30,7 @@ const NavBar = observer( () => {
                     <Nav className="ml-3">
                         <Button
                                 variant={"outline-light"}
-                                onClick={e => console.log(user.user.id)}
+                                onClick={e => navigate(PERSONAL_COLLECTIONS_ROUTE)}
                         >{user.user.name}</Button>
                         {
                             user.user.role==="ADMIN" ?

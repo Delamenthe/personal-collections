@@ -1,6 +1,6 @@
 const ApiError =  require('../error/ApiError')
 const bcrypt = require('bcrypt')
-const {User, Collection} = require('../models/models')
+const {User, Collection, Tag} = require('../models/models')
 const jwt = require('jsonwebtoken')
 
 const generateJwt = (id, name, email, role) => {
@@ -26,6 +26,12 @@ class UserController{
         return res.json({token})
     }
 
+    async update(req,res){
+        const {id, status, role} = req.body
+        const user = await User.findOneAndUpdate({_id:id}, {status, role}).exec()
+        return res.json(user)
+    }
+
     async login(req,res, next){
         const {email, password} = req.body
         const user = await User.findOne({email: `${email}`}).exec()
@@ -38,6 +44,18 @@ class UserController{
         }
         const token  = generateJwt(user.id, user.name, user.email, user.role)
         return res.json({token})
+    }
+
+    async getAll(req,res){
+        const users = await User.find()
+        return res.json(users)
+    }
+
+    async delete(req,res){
+        const {id} = req.params
+        await User.findOneAndDelete({id})
+        return res.json({"message": "deleted"})
+
     }
 
     async check(req,res) {

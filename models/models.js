@@ -6,6 +6,8 @@ const UserSchema = new db.Schema({
     email: {type: String, required: true, trim: true},
     password: {type: String, required: true},
     role: {type: String, default: "USER"},
+    status: {type: String, default: "ACTIVE"},
+    selected: {type: Boolean, default: false}
 })
 const User= model("User",UserSchema)
 

@@ -33,7 +33,7 @@ class UserController{
     }
 
     async login(req,res, next){
-        const {email, password} = req.body
+        const {email, password, status} = req.body
         const user = await User.findOne({email: `${email}`}).exec()
         if (!user) {
             return next(ApiError.internal('User not found'))
@@ -41,6 +41,9 @@ class UserController{
         let comparePassword = bcrypt.compareSync(password, user.password)
         if (!comparePassword){
             return next(ApiError.internal('Invalid password'))
+        }
+        if(user.status==="BLOCKED"){
+            return next(ApiError.internal('This user is blocked'))
         }
         const token  = generateJwt(user.id, user.name, user.email, user.role)
         return res.json({token})

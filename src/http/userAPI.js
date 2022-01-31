@@ -23,7 +23,7 @@ export const fetchUsers = async ()=>{
 }
 
 export  const deleteUser = async (id) => {
-    const {data} = await $authHost.delete('api/user/', {id})
+    const {data} = await $authHost.delete('api/user/', id)
     return data
 }
 

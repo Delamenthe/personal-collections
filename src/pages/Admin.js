@@ -30,8 +30,12 @@ const Admin = observer(() => {
             }
             return user;
         })
+
+        const totalItems = users.length;
+        const totalCheckedItems = tempList.filter((e) => e.selected).length;
+
         setUsers(tempList)
-        setMasterChecked(e.target.checked)
+        setMasterChecked(totalItems === totalCheckedItems)
         setSelectedList(users.filter((e) => e.selected))
         console.log(selectedList)
     }
@@ -39,25 +43,32 @@ const Admin = observer(() => {
     function blockUsers(){
         selectedList.map(user => {
             updateUser(user._id, "BLOCKED").then(data => console.log(data))
+            fetchUsers().then(data=>setUsers(data))
         })
+
     }
 
     function unblockUsers(){
         selectedList.map(user => {
             updateUser(user._id, "ACTIVE").then(data => console.log(data))
+            fetchUsers().then(data=>setUsers(data))
         })
     }
 
     function changeRole(){
         selectedList.map(user =>
             user.role === "USER" ?  updateUser(user._id, user.status,"ADMIN").then(data => console.log(data))
-                :  updateUser(user._id,user.status, "USER").then(data => console.log(data))
+                :  updateUser(user._id,user.status, "USER").then(data => console.log(data)),
+            fetchUsers().then(data=>setUsers(data))
         )
+
     }
 
     function deleteUsers(){
         selectedList.map(user => {
+            console.log(user._id)
             deleteUser(user._id).then(data => console.log(data))
+            fetchUsers().then(data=>setUsers(data))
         })
     }
 
@@ -102,7 +113,6 @@ const Admin = observer(() => {
                     <th>EMAIL</th>
                     <th>ROLE</th>
                     <th>STATUS</th>
-                    <th>SELECTED</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -120,7 +130,6 @@ const Admin = observer(() => {
                         <td>{user.email}</td>
                         <td>{user.role}</td>
                         <td>{user.status}</td>
-                        <td>{user.selected ? "true":"false"}</td>
                     </tr>)
                 )}
                 </tbody>

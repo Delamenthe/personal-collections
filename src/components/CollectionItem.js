@@ -8,7 +8,7 @@ const CollectionItem = ({collection}) => {
     return (
         <Col md={3} className={"mt-3"} onClick={()=>navigate(COLLECTIONS_ROUTE+collection._id)}>
             <Card style={{width: 300, cursor: "pointer"}} border={"light"}>
-                <Image width={300} height={300} src={'https://res.cloudinary.com/delamenthe/image/upload/v1643469481/'+collection.img+'.jpg'}/>
+                <Image width={300} height={300} src={'https://res.cloudinary.com/delamenthe/image/upload/c_fill,h_300,w_300,x_0/v1643536783/'+collection.img+'.jpg'}/>
                 <h4>{collection.name}</h4>
                 <div>{collection.description}</div>
             </Card>

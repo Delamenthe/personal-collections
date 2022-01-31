@@ -31,10 +31,15 @@ const NavBar = observer( () => {
                                 variant={"outline-light"}
                                 onClick={e => console.log(user.user.id)}
                         >{user.user.name}</Button>
-                        <Button
-                            variant={"outline-light"}
-                            onClick={()=>navigate(ADMIN_ROUTE)}
-                        >Admin Panel</Button>
+                        {
+                            user.user.role==="ADMIN" ?
+                            <Button
+                                variant={"outline-light"}
+                                onClick={() => navigate(ADMIN_ROUTE)}
+                            >Admin Panel</Button>
+                            :
+                            <></>
+                        }
                         <Button
                             variant={"outline-light"}
                             onClick={()=> logOut()}
